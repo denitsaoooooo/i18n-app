@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="ie8 no-js" data-ng-app="app"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9 no-js" data-ng-app="app"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" data-ng-app="app">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Translation and Internationalization</title>
+
+    <script src="plugins/angular.min.js"></script>
+    <script src="plugins/angular-translate.min.js" type="text/javascript"></script>
+    <script src="plugins/angular-translate-loader-static-files.min.js" type="text/javascript"></script>
+    <script src="plugins/tmhDynamicLocale.min.js" type="text/javascript"></script>
+	<script src="plugins/angular-cookies.min.js" type="text/javascript"></script>
+
+    <script src="main.js"></script>
+    <script src="service/i18n.service.js"></script>
+    <script src="service/chart.service.js"></script>
+    <script src="highcharts/highcharts.js"></script>
+    <script src="app.controller.js"></script>
+</head>
+<body>
+    <div ng-app="App">
+        <div ng-controller="AppController">
+            <div class="main_content">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div ng-repeat="lang in listLangs">
+                            <a href="#" ng-click="changeLanguage(lang)" class="lang_button">{{lang}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12"><h1>{{'WELCOME_MSG' | translate}}</h1></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <div id="datesChart"></div>
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <table>
+                            <tbody>
+                            <tr ng-repeat="item in topMerchants">
+                                <td title="Merchant name">
+                                    <span>{{item.rankNumber + '. ' + item.merchantName}}</span>
+                                </td>
+                                <td class="text-right">{{(item.revenue | number: 0)}}</td>
+                                <td class="text-right">{{item.start_date | date}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
